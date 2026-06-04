@@ -1,12 +1,12 @@
-<!doctype html>
-<html lang="en">
-<head><meta name="robots" content="noindex, nofollow">
-<meta charset="utf-8" />
+<!DOCTYPE html>
+<!-- saved from url=(0059)file:///Users/harry/Downloads/LTA_Landing_Page_FINAL_2.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>Little Tech Association</title>
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./Little Tech Association_files/css2" rel="stylesheet">
 <style>
   :root {
     --petrol:  #07313F;
@@ -66,7 +66,7 @@
   /* Hero pinned at a fixed vertical position so the static line never moves */
   .hero {
     position: absolute;
-    top: 30%;
+    top: 22%;
     left: clamp(40px, 6vw, 88px);
     right: clamp(40px, 6vw, 88px);
     max-width: 1080px;
@@ -102,6 +102,17 @@
   }
   @keyframes blink { 0%,50% { opacity: 1; } 50.01%,100% { opacity: 0; } }
 
+  /* Descriptive paragraph below the headline — Figtree, smaller than the tagline. */
+  .hero-body {
+    margin: 26px 0 0;
+    max-width: 1080px;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 400;
+    font-size: clamp(14px, 1.25vw, 16px);
+    line-height: 1.6;
+    color: var(--paper72);
+  }
+
   /* Join zone — always on, centered in the lower third. Tagline stacked above button. */
   .join-zone {
     position: absolute;
@@ -128,7 +139,7 @@
     font-weight: 600;
     font-size: 17px;
     letter-spacing: 0.01em;
-    color: var(--petrol);
+    color: var(--paper);
     background: var(--vibrant);
     padding: 17px 52px;
     border-radius: 5px;
@@ -144,20 +155,20 @@
   <div class="topbar">
     <div class="brand">Little Tech Association</div>
     <nav class="nav">
-      <a href="#">Mission &amp; Issues</a>
-      <a href="#">Why Actual?</a>
-      <a href="#">Join Us</a>
+      <a href="file:///Users/harry/Downloads/LTA_Landing_Page_FINAL_2.html#">Mission &amp; Issues</a>
+      <a href="file:///Users/harry/Downloads/LTA_Landing_Page_FINAL_2.html#">Join Us</a>
     </nav>
   </div>
 
   <div class="stage">
     <div class="hero">
-      <p class="headline">The actual voice of founders, start-ups, and digital innovators<span class="change-slot" id="slot"></span></p>
+      <p class="headline">The actual voice of founders, start-ups, and digital innovators<span class="change-slot" id="slot"><span class="dash"> — </span><span class="typed">defending free markets.</span><span class="caret"></span></span></p>
+      <p class="hero-body">Little Tech Association works to make it easier to start, build, and grow in the digital economy — expanding access to capital and customers, freeing talent to move where their best ideas are, and right-sizing rules so small teams aren't crushed by compliance costs built for giants. We champion open systems, open standards, and open infrastructure, so the tools people rely on work together and no gatekeeper decides who gets a shot. When markets stay open and competitive, the best products win — on merit, not market power.</p>
     </div>
 
     <div class="join-zone">
       <p class="join-tagline">Together, let's build something great:</p>
-      <a class="join-btn" href="#">Join Us</a>
+      <a class="join-btn" href="file:///Users/harry/Downloads/LTA_Landing_Page_FINAL_2.html#">Join Us</a>
     </div>
   </div>
 
@@ -213,5 +224,6 @@
   setTimeout(cycle, 800);
 })();
 </script>
-</body>
-</html>
+
+
+</body></html>
