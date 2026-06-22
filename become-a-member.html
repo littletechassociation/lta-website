@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Little Tech Association — Become a Member</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --petrol:  #07313F;
+    --paper:   #F7F5F2;
+    --orange:  #CC4812;
+    --vibrant: #EF5E1C;
+    --blue:    #6B8FF0;
+    --paper40: rgba(247, 245, 242, 0.40);
+    --paper60: rgba(247, 245, 242, 0.62);
+    --paper72: rgba(247, 245, 242, 0.72);
+    --paper85: rgba(247, 245, 242, 0.85);
+    --paper92: rgba(247, 245, 242, 0.92);
+    --rule10:  rgba(247, 245, 242, 0.10);
+    --rule18:  rgba(247, 245, 242, 0.18);
+    --rule28:  rgba(247, 245, 242, 0.28);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--petrol);
+    color: var(--paper);
+    font-family: 'Figtree', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+
+  /* === DOC FRAME === */
+  .doc-frame { padding: 32px 32px 64px; max-width: 1640px; margin: 0 auto; background: #EAE5DB; }
+  .doc-header { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 14px; margin-bottom: 16px; border-bottom: 1px solid rgba(7,49,63,0.18); }
+  .doc-header h1 { font-family: 'Archivo', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--petrol); margin: 0; }
+  .doc-header .meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.04em; color: rgba(7,49,63,0.6); }
+
+  .browser { border: 1px solid rgba(7,49,63,0.18); border-radius: 8px; overflow: hidden; box-shadow: 0 8px 24px rgba(7,49,63,0.08); }
+  .browser-bar { background: #2C2C2A; padding: 9px 14px; display: flex; align-items: center; gap: 7px; }
+  .browser-bar .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .browser-bar .url { flex: 1; margin: 0 16px; background: #1F1F1F; border-radius: 4px; padding: 3px 12px; font-size: 11px; color: rgba(255,255,255,0.55); font-family: 'JetBrains Mono', monospace; }
+
+  .page-content { background: var(--petrol); }
+
+  /* === LOCKUP === */
+  .lockup { display: flex; align-items: center; }
+  .lockup .mark { display: block; flex-shrink: 0; }
+  .lockup .mark svg { display: block; width: 100%; height: 100%; }
+  .lockup .word { display: flex; flex-direction: column; line-height: 1; font-family: 'Archivo', sans-serif; }
+  .lockup .word .l1 { font-weight: 600; line-height: 1; letter-spacing: -0.02em; }
+  .lockup .word .l2 { font-weight: 400; line-height: 1; letter-spacing: -0.02em; opacity: 0.68; }
+
+  .lockup-sm { gap: 4.4px; }
+  .lockup-sm .mark { width: 32px; height: 27.71px; }
+  .lockup-sm .word { margin-top: -3.02px; margin-bottom: -3.11px; }
+  .lockup-sm .word .l1 { font-size: 15.8px; margin-left: -9.42px; }
+  .lockup-sm .word .l2 { font-size: 15.8px; margin-top: 0.66px; }
+
+  /* === NAVBAR === */
+  .navbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 56px;
+    border-bottom: 1px solid var(--rule10);
+  }
+  .nav-right { display: flex; align-items: center; gap: 28px; }
+  .brand {
+    font-family: 'Figtree', sans-serif; font-size: 17px; font-weight: 600;
+    letter-spacing: -0.01em; color: var(--paper); text-decoration: none;
+  }
+  .nav-link {
+    font-family: 'Figtree', sans-serif; font-size: 14px; font-weight: 500;
+    color: var(--paper); text-decoration: none;
+  }
+  .nav-cta {
+    font-family: 'Figtree', sans-serif; font-weight: 600; font-size: 13px;
+    padding: 9px 18px; border-radius: 4px;
+    background: var(--vibrant); color: var(--paper);
+    text-decoration: none; cursor: pointer;
+  }
+
+  /* === MASTHEAD === */
+  .masthead {
+    padding: 56px 96px 40px;
+    border-bottom: 1px solid var(--rule10);
+  }
+  .masthead .eyebrow {
+    font-family: 'Archivo', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--vibrant); margin-bottom: 24px;
+  }
+  .masthead h1 {
+    font-family: 'Archivo', sans-serif; font-size: 64px; font-weight: 600;
+    line-height: 1.0; letter-spacing: -0.035em;
+    color: var(--paper); margin: 0;
+  }
+
+  /* === MOCKUP NOTE === */
+  .mockup-note {
+    background: rgba(204, 72, 18, 0.06);
+    border-left: 3px solid var(--vibrant);
+    margin: 24px 96px 0;
+    padding: 14px 22px;
+    font-family: 'Figtree', sans-serif; font-size: 13px; line-height: 1.55;
+    color: var(--paper85);
+  }
+  .mockup-note strong { color: var(--vibrant); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; font-size: 11px; }
+
+  /* === STEPS LAYOUT === */
+  .steps-wrap {
+    padding: 56px 96px 96px;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 56px;
+  }
+
+  /* === LEFT RAIL: STEP INDICATOR === */
+  .step-rail {
+    position: sticky; top: 32px;
+    align-self: start;
+  }
+  .step-rail .rail-label {
+    font-family: 'Archivo', sans-serif; font-size: 10px; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--paper60); margin-bottom: 18px;
+  }
+  .step-rail ol { list-style: none; padding: 0; margin: 0; }
+  .step-rail .step-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 14px 0;
+    border-top: 1px solid var(--rule10);
+    position: relative;
+  }
+  .step-rail .step-item:last-child { border-bottom: 1px solid var(--rule10); }
+  .step-rail .step-item .num {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--paper60); letter-spacing: 0.05em;
+    flex-shrink: 0; width: 22px; padding-top: 2px;
+  }
+  .step-rail .step-item .name {
+    font-family: 'Archivo', sans-serif; font-size: 13px; font-weight: 500;
+    color: var(--paper60); letter-spacing: -0.005em; line-height: 1.35;
+  }
+  .step-rail .step-item.complete .num { color: var(--vibrant); }
+  .step-rail .step-item.complete .name { color: var(--paper); }
+  .step-rail .step-item.complete::after {
+    content: '✓'; color: var(--vibrant); font-size: 12px;
+    margin-left: auto; padding-top: 1px;
+  }
+  .step-rail .step-item.active .num { color: var(--vibrant); font-weight: 600; }
+  .step-rail .step-item.active .name { color: var(--vibrant); font-weight: 600; }
+  .step-rail .step-item.active::before {
+    content: ''; position: absolute; left: -10px; top: 14px; bottom: 14px;
+    width: 2px; background: var(--vibrant);
+  }
+  .step-rail .step-item.future .num,
+  .step-rail .step-item.future .name { opacity: 0.45; }
+
+  /* === STEP CARDS / SLIDES === */
+  .steps-content { max-width: 800px; min-height: 540px; }
+
+  .step-card {
+    border: 1px solid rgba(239,94,28,0.4);
+    border-radius: 6px;
+    overflow: hidden;
+    background: rgba(247,245,242,0.03);
+    display: none;
+  }
+  .step-card.shown { display: block; animation: slidein 0.28s ease; }
+  @keyframes slidein {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .step-card .step-head {
+    padding: 24px 32px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .step-card .step-head .step-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    color: var(--vibrant); letter-spacing: 0.06em;
+  }
+  .step-card .step-head h2 {
+    font-family: 'Archivo', sans-serif; font-size: 22px; font-weight: 600;
+    letter-spacing: -0.015em; color: var(--paper); margin: 0; flex: 1;
+  }
+  .step-card .step-head .status {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--vibrant);
+  }
+
+  .step-card .step-body {
+    padding: 24px 32px 32px;
+    border-top: 1px solid var(--rule10);
+  }
+
+  /* === FORM PRIMITIVES === */
+  .form-intro {
+    font-family: 'Figtree', sans-serif; font-size: 15px; line-height: 1.6;
+    color: var(--paper85); margin: 0 0 28px;
+  }
+  .form-field { margin-bottom: 22px; }
+  .form-field label {
+    display: block;
+    font-family: 'Archivo', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--vibrant); margin-bottom: 8px;
+  }
+  .form-field label .req { color: var(--paper40); font-weight: 500; }
+  .form-field input[type=text],
+  .form-field input[type=email],
+  .form-field input[type=tel],
+  .form-field input[type=url],
+  .form-field textarea {
+    width: 100%;
+    background: rgba(247,245,242,0.04);
+    border: 1px solid var(--rule18);
+    border-radius: 4px;
+    padding: 14px 16px;
+    font-family: 'Figtree', sans-serif; font-size: 15px;
+    color: var(--paper); font-weight: 400;
+  }
+  .form-field input:focus,
+  .form-field textarea:focus {
+    outline: none; border-color: var(--vibrant);
+    background: rgba(247,245,242,0.06);
+  }
+  .form-field input::placeholder,
+  .form-field textarea::placeholder { color: rgba(247,245,242,0.4); }
+
+  /* error state — uses orange as the attention signal (in-palette) */
+  .form-field.error input,
+  .form-field.error textarea,
+  .form-field.error .select-wrap select { border-color: var(--vibrant); }
+  .err-msg {
+    display: none;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--vibrant); margin-top: 7px;
+  }
+  .form-field.error .err-msg { display: block; }
+
+  /* selects styled to match inputs */
+  .select-wrap { position: relative; }
+  .select-wrap select {
+    width: 100%;
+    appearance: none; -webkit-appearance: none;
+    background: rgba(247,245,242,0.04);
+    border: 1px solid var(--rule18);
+    border-radius: 4px;
+    padding: 14px 40px 14px 16px;
+    font-family: 'Figtree', sans-serif; font-size: 15px;
+    color: var(--paper); cursor: pointer;
+  }
+  .select-wrap select:focus { outline: none; border-color: var(--vibrant); background: rgba(247,245,242,0.06); }
+  .select-wrap select.placeholder { color: rgba(247,245,242,0.4); }
+  .select-wrap select option { color: #07313F; background: #F7F5F2; }
+  .select-wrap::after {
+    content: '▾'; position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+    color: var(--paper60); font-size: 12px; pointer-events: none;
+  }
+
+  .form-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 22px; }
+  .form-field-row .form-field { margin-bottom: 0; }
+  .form-field-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin-bottom: 22px; }
+  .form-field-row-3 .form-field { margin-bottom: 0; }
+
+  .privacy-note {
+    background: rgba(247,245,242,0.04);
+    border-left: 2px solid var(--blue);
+    padding: 12px 16px; margin: 24px 0 8px;
+    font-family: 'Figtree', sans-serif; font-size: 12px; line-height: 1.55;
+    color: var(--paper72); font-style: italic;
+  }
+  .privacy-note b { font-style: normal; font-weight: 600; color: var(--paper); }
+
+  /* === SOCIAL HANDLES === */
+  .social-group .label-block {
+    font-family: 'Archivo', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--vibrant); margin-bottom: 4px;
+  }
+  .social-group .help-block {
+    font-family: 'Figtree', sans-serif; font-size: 12px; color: var(--paper60);
+    margin-bottom: 12px; font-style: italic;
+  }
+  .social-row { display: grid; grid-template-columns: 200px 1fr auto; gap: 12px; margin-bottom: 10px; align-items: center; }
+  .social-row .handle-input { width: 100%; }
+  .social-remove {
+    width: 38px; height: 38px; flex-shrink: 0;
+    background: transparent; border: 1px solid var(--rule18); border-radius: 4px;
+    color: var(--paper60); font-size: 16px; cursor: pointer; line-height: 1;
+  }
+  .social-remove:hover { border-color: var(--vibrant); color: var(--vibrant); }
+  .social-add {
+    margin-top: 4px;
+    font-family: 'Figtree', sans-serif; font-weight: 600; font-size: 13px;
+    background: transparent; color: var(--vibrant);
+    border: 1px dashed rgba(239,94,28,0.4); border-radius: 4px;
+    padding: 10px 16px; cursor: pointer;
+  }
+  .social-add:hover { background: rgba(239,94,28,0.06); }
+
+  /* === ENGAGEMENT === */
+  .engagement-options { display: flex; flex-direction: column; gap: 10px; }
+  .engagement-option {
+    background: rgba(247,245,242,0.03);
+    border: 1px solid var(--rule18); border-radius: 4px;
+    padding: 22px 24px; cursor: pointer;
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .engagement-option .radio {
+    width: 18px; height: 18px; border-radius: 50%;
+    border: 1.5px solid var(--rule28); flex-shrink: 0;
+    margin-top: 3px; position: relative;
+  }
+  .engagement-option .copy { flex: 1; }
+  .engagement-option .opt-name {
+    font-family: 'Archivo', sans-serif; font-size: 15px; font-weight: 600;
+    letter-spacing: -0.01em; color: var(--paper); display: block; margin-bottom: 4px;
+  }
+  .engagement-option .opt-desc {
+    font-family: 'Figtree', sans-serif; font-size: 13px; line-height: 1.55; color: var(--paper72);
+  }
+  .engagement-option.selected { border-color: var(--vibrant); background: rgba(239,94,28,0.06); }
+  .engagement-option.selected .radio { border-color: var(--vibrant); }
+  .engagement-option.selected .radio::after {
+    content: ''; position: absolute; top: 3px; left: 3px;
+    width: 9px; height: 9px; background: var(--vibrant); border-radius: 50%;
+  }
+
+  /* === SIGN-ON LETTER === */
+  .signon-body {
+    font-family: 'Figtree', sans-serif; font-size: 15px; line-height: 1.65;
+    color: var(--paper85); margin: 0 0 26px;
+  }
+  .signon-body a { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+  .signon-check {
+    display: flex; align-items: flex-start; gap: 14px;
+    background: rgba(239,94,28,0.06); border: 1px solid rgba(239,94,28,0.4);
+    border-radius: 4px; padding: 18px 22px; cursor: pointer;
+  }
+  .signon-check .box {
+    width: 20px; height: 20px; border-radius: 4px; flex-shrink: 0;
+    border: 1.5px solid var(--rule28); position: relative; margin-top: 1px;
+    transition: all 0.12s;
+  }
+  .signon-check.checked .box { background: var(--vibrant); border-color: var(--vibrant); }
+  .signon-check.checked .box::after {
+    content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-52%);
+    color: var(--paper); font-size: 13px; font-weight: 700;
+  }
+  .signon-check .box-label {
+    font-family: 'Archivo', sans-serif; font-size: 15px; font-weight: 600;
+    letter-spacing: -0.01em; color: var(--paper);
+  }
+  .signon-reason { margin-top: 18px; display: none; }
+  .signon-reason.shown { display: block; }
+
+  /* === STEP ACTIONS === */
+  .step-actions {
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--rule10);
+    margin-top: 30px; padding-top: 22px;
+  }
+  .btn-primary {
+    font-family: 'Figtree', sans-serif; font-weight: 600; font-size: 14px;
+    padding: 12px 26px; border-radius: 4px;
+    background: var(--vibrant); color: var(--paper);
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--orange); }
+  .btn-secondary {
+    font-family: 'Figtree', sans-serif; font-weight: 500; font-size: 14px;
+    padding: 12px 22px; border-radius: 4px;
+    background: transparent; color: var(--paper72);
+    border: 1px solid var(--rule18); cursor: pointer;
+  }
+  .btn-secondary:hover { border-color: var(--rule28); color: var(--paper); }
+  .btn-secondary.hidden { visibility: hidden; }
+
+  /* === THANK YOU === */
+  .step-thanks .check-icon {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: rgba(239,94,28,0.12);
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-bottom: 22px; font-size: 26px; color: var(--vibrant); font-weight: 600;
+  }
+  .step-thanks h3 {
+    font-family: 'Archivo', sans-serif; font-size: 34px; font-weight: 500;
+    letter-spacing: -0.02em; color: var(--paper); margin: 0 0 16px; line-height: 1.15;
+  }
+  .step-thanks .body {
+    font-family: 'Figtree', sans-serif; font-size: 16px; line-height: 1.6;
+    color: var(--paper85); max-width: 540px; margin: 0 0 28px;
+  }
+  .step-thanks .return-link {
+    font-family: 'Figtree', sans-serif; font-size: 13px; font-weight: 600;
+    color: var(--blue); text-decoration: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="doc-frame">
+
+<header class="doc-header">
+  <h1>LTA — Become a Member Page</h1>
+  <div class="meta">Interactive stepper · v2 · click Next to advance</div>
+</header>
+
+<div class="browser">
+  <div class="browser-bar">
+    <span class="dot" style="background:#FF5F56"></span>
+    <span class="dot" style="background:#FFBD2E"></span>
+    <span class="dot" style="background:#27C93F"></span>
+    <span class="url">littletech.org/become-a-member</span>
+  </div>
+
+  <div class="page-content">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <a class="brand">Little Tech Association</a>
+      <div class="nav-right">
+        <a class="nav-link">Mission &amp; Issues</a>
+        <a class="nav-cta">Join Us</a>
+      </div>
+    </nav>
+
+    <!-- MASTHEAD -->
+    <section class="masthead">
+      <div class="eyebrow">Apply for membership</div>
+      <h1>Join LTA</h1>
+    </section>
+
+    <!-- MOCKUP NOTE -->
+    <div class="mockup-note">
+      <strong>Mockup note —</strong> This is an interactive prototype. Each section reveals one at a time; complete the required fields and click <b>Next</b> to advance. The progress rail on the left checks off completed sections.
+    </div>
+
+    <!-- STEPS LAYOUT -->
+    <div class="steps-wrap">
+
+      <!-- LEFT RAIL -->
+      <aside class="step-rail">
+        <div class="rail-label">Application</div>
+        <ol id="rail">
+          <li class="step-item active" data-rail="0"><span class="num">01</span><span class="name">Your company</span></li>
+          <li class="step-item future"  data-rail="1"><span class="num">02</span><span class="name">Point of contact</span></li>
+          <li class="step-item future"  data-rail="2"><span class="num">03</span><span class="name">Engagement level</span></li>
+          <li class="step-item future"  data-rail="3"><span class="num">04</span><span class="name">Sign-on letter</span></li>
+          <li class="step-item future"  data-rail="4"><span class="num">05</span><span class="name">Complete</span></li>
+        </ol>
+      </aside>
+
+      <!-- SLIDES -->
+      <div class="steps-content">
+
+        <!-- ============ 01 — COMPANY ============ -->
+        <div class="step-card shown" data-step="0">
+          <div class="step-head">
+            <span class="step-num">01</span>
+            <h2>Tell Us About Your Company</h2>
+            <span class="status">Step 1 of 5</span>
+          </div>
+          <div class="step-body">
+            <p class="form-intro">Help us understand your company so we can advocate effectively on your behalf.</p>
+
+            <div class="form-field" data-required>
+              <label>In a sentence, describe your company.</label>
+              <textarea rows="2" data-field="description" placeholder="What does your company do?"></textarea>
+              <span class="err-msg">Required</span>
+            </div>
+
+            <div class="form-field" data-required>
+              <label>Company website</label>
+              <input type="url" data-field="website" placeholder="https://yourcompany.com" />
+              <span class="err-msg">Required</span>
+            </div>
+
+            <div class="form-field-row">
+              <div class="form-field" data-required>
+                <label>Where are you located?</label>
+                <input type="text" data-field="location" placeholder="City, State, ZIP — or country if outside the U.S." />
+                <span class="err-msg">Required</span>
+              </div>
+              <div class="form-field" data-required>
+                <label>Primary market segment</label>
+                <div class="select-wrap">
+                  <select data-field="segment" class="placeholder">
+                    <option value="" selected disabled hidden>Select your segment</option>
+                    <option>Consumer software / apps</option>
+                    <option>Developer tools / infrastructure</option>
+                    <option>AI / machine learning</option>
+                    <option>Fintech / payments</option>
+                    <option>Marketplace / commerce</option>
+                    <option>Hardware / devices</option>
+                    <option>Media / content</option>
+                    <option>Investor / venture fund</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <span class="err-msg">Required</span>
+              </div>
+            </div>
+
+            <div class="form-field" data-required>
+              <label>Current estimated market cap (or AUM)</label>
+              <div class="select-wrap">
+                <select data-field="marketcap" class="placeholder">
+                  <option value="" selected disabled hidden>Select range</option>
+                  <option>Pre-revenue / pre-seed</option>
+                  <option>Under $10M</option>
+                  <option>$10M – $50M</option>
+                  <option>$50M – $250M</option>
+                  <option>$250M – $1B</option>
+                  <option>$1B – $10B</option>
+                  <option>Over $10B</option>
+                </select>
+              </div>
+              <span class="err-msg">Required</span>
+            </div>
+
+            <div class="privacy-note">
+              <b>Confidential.</b> Your answer to the market-cap question is for vetting purposes only — it will not be shared with other members or the public.
+            </div>
+
+            <!-- SOCIAL HANDLES -->
+            <div class="social-group" style="margin-top: 26px;">
+              <div class="label-block">Social media <span style="color: var(--paper40); font-weight: 500;">(optional)</span></div>
+              <div class="help-block">Add the handles you'd like us to tag. Select a platform, then enter your handle or URL.</div>
+              <div id="social-rows"></div>
+              <button type="button" class="social-add" id="social-add">+ Add a platform</button>
+            </div>
+
+            <div class="step-actions">
+              <button class="btn-secondary hidden">Back</button>
+              <button class="btn-primary" data-next>Next →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ 02 — POINT OF CONTACT ============ -->
+        <div class="step-card" data-step="1">
+          <div class="step-head">
+            <span class="step-num">02</span>
+            <h2>Point of Contact</h2>
+            <span class="status">Step 2 of 5</span>
+          </div>
+          <div class="step-body">
+            <p class="form-intro">Who should we coordinate with? This is the person we'll reach for member communications and time-sensitive advocacy.</p>
+
+            <div class="form-field-row">
+              <div class="form-field" data-required>
+                <label>First name</label>
+                <input type="text" data-field="firstName" placeholder="First name" />
+                <span class="err-msg">Required</span>
+              </div>
+              <div class="form-field" data-required>
+                <label>Last name</label>
+                <input type="text" data-field="lastName" placeholder="Last name" />
+                <span class="err-msg">Required</span>
+              </div>
+            </div>
+
+            <div class="form-field" data-required>
+              <label>Title</label>
+              <input type="text" data-field="title" placeholder="e.g. Founder &amp; CEO" />
+              <span class="err-msg">Required</span>
+            </div>
+
+            <div class="form-field-row">
+              <div class="form-field" data-required>
+                <label>Phone number</label>
+                <input type="tel" data-field="phone" placeholder="(555) 555-5555" />
+                <span class="err-msg">Required</span>
+              </div>
+              <div class="form-field" data-required data-email>
+                <label>Email address</label>
+                <input type="email" data-field="email" placeholder="you@yourcompany.com" />
+                <span class="err-msg">Enter a valid email</span>
+              </div>
+            </div>
+
+            <div class="form-field-row">
+              <div class="form-field" data-required>
+                <label>City</label>
+                <input type="text" data-field="city" placeholder="City" />
+                <span class="err-msg">Required</span>
+              </div>
+              <div class="form-field" data-required>
+                <label>State</label>
+                <input type="text" data-field="state" placeholder="State" />
+                <span class="err-msg">Required</span>
+              </div>
+            </div>
+
+            <div class="step-actions">
+              <button class="btn-secondary" data-back>Back</button>
+              <button class="btn-primary" data-next>Next →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ 03 — ENGAGEMENT ============ -->
+        <div class="step-card" data-step="2">
+          <div class="step-head">
+            <span class="step-num">03</span>
+            <h2>Choose Your Engagement Level</h2>
+            <span class="status">Step 3 of 5</span>
+          </div>
+          <div class="step-body">
+            <p class="form-intro">
+              In the course of our work, LTA produces digital and physical advocacy materials. Some — like press statements — carry only LTA's brand. Others — like sign-on letters — use member company names and logos to maximize impact. Advocacy can move fast; we may need to pull together such materials on short notice. <strong style="color: var(--paper); font-weight: 600;">What are your preferences regarding the use of your company name and logo?</strong>
+            </p>
+
+            <div class="engagement-options" id="engagement">
+              <label class="engagement-option selected" data-engage>
+                <span class="radio"></span>
+                <span class="copy">
+                  <span class="opt-name">Opt-In</span>
+                  <span class="opt-desc">LTA may use our name or logo on specific materials. No advance notification is necessary.</span>
+                </span>
+              </label>
+
+              <label class="engagement-option" data-engage>
+                <span class="radio"></span>
+                <span class="copy">
+                  <span class="opt-name">Opt-In with Notification</span>
+                  <span class="opt-desc">LTA may use our name or logo on specific materials, provided we are given written notice at least 24 hours in advance of publication and the opportunity to opt out.</span>
+                </span>
+              </label>
+
+              <label class="engagement-option" data-engage>
+                <span class="radio"></span>
+                <span class="copy">
+                  <span class="opt-name">Opt-Out</span>
+                  <span class="opt-desc">LTA may NOT use our name or logo on specific materials unless the association receives advance approval in writing.</span>
+                </span>
+              </label>
+            </div>
+
+            <div class="step-actions">
+              <button class="btn-secondary" data-back>Back</button>
+              <button class="btn-primary" data-next>Next →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ 04 — SIGN-ON LETTER ============ -->
+        <div class="step-card" data-step="3">
+          <div class="step-head">
+            <span class="step-num">04</span>
+            <h2>Join LTA's Launch Sign-on Letter</h2>
+            <span class="status">Step 4 of 5</span>
+          </div>
+          <div class="step-body">
+            <p class="signon-body">
+              As soon as LTA goes public this summer, we will urge Congress to act on long-stalled legislation to advance competitive markets and support founders, start-ups, and digital innovators. Our first step in that work will be this sign-on letter (<a href="#" id="signon-pdf">click here to download the PDF</a>). We want to show the breadth and depth of industry support for this work, so we're asking our members to sign on. By clicking "Next" you agree to include your company's name on this letter.
+            </p>
+
+            <div class="signon-check checked" id="signon-check">
+              <span class="box"></span>
+              <span class="box-label">Yes, add our name!</span>
+            </div>
+
+            <div class="form-field signon-reason" id="signon-reason" data-required>
+              <label>Could you briefly tell us why you opted not to join the sign-on letter?</label>
+              <textarea rows="3" placeholder="A sentence or two is fine."></textarea>
+              <span class="err-msg">Please tell us why before continuing</span>
+            </div>
+
+            <div class="step-actions">
+              <button class="btn-secondary" data-back>Back</button>
+              <button class="btn-primary" data-next>Next →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ 05 — THANK YOU ============ -->
+        <div class="step-card step-thanks" data-step="4">
+          <div class="step-head">
+            <span class="step-num">05</span>
+            <h2>Thank You!</h2>
+            <span class="status">Complete</span>
+          </div>
+          <div class="step-body">
+            <span class="check-icon">✓</span>
+            <h3>Thank you!</h3>
+            <p class="body">Thanks for applying to be part of the Little Tech Association. A member of our team will be in touch shortly.</p>
+            <a class="return-link" href="#">← Return to littletech.org</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<script>
+(function () {
+  var TOTAL = 5;
+  var current = 0;
+  var completed = {};
+
+  // ===== BACKEND SUBMISSION =====
+  // 1. Set up the Google Apps Script web app (see setup checklist).
+  // 2. Paste its web app URL between the quotes below.
+  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwf3RfnAuHT8hazj1Qe2ZQ3C0I9Q9alI2WwWkc0yDeb1X_-hesa3RpbW-G28CpsG8x9sA/exec';
+
+  function fieldVal(key) {
+    var el = document.querySelector('[data-field="' + key + '"]');
+    return el ? (el.value || '').trim() : '';
+  }
+  function collectData() {
+    var social = [];
+    document.querySelectorAll('#social-rows .social-row').forEach(function (row) {
+      var p = row.querySelector('select');
+      var h = row.querySelector('input');
+      if (p && h && p.value && (h.value || '').trim()) social.push(p.value + ': ' + h.value.trim());
+    });
+    var eng = document.querySelector('#engagement .engagement-option.selected .opt-name');
+    var joined = document.getElementById('signon-check').classList.contains('checked');
+    var reasonEl = document.querySelector('#signon-reason textarea');
+    return {
+      companyDescription: fieldVal('description'),
+      website: fieldVal('website'),
+      location: fieldVal('location'),
+      segment: fieldVal('segment'),
+      marketCap: fieldVal('marketcap'),
+      socialHandles: social.join(' | '),
+      firstName: fieldVal('firstName'),
+      lastName: fieldVal('lastName'),
+      title: fieldVal('title'),
+      phone: fieldVal('phone'),
+      email: fieldVal('email'),
+      city: fieldVal('city'),
+      state: fieldVal('state'),
+      engagementLevel: eng ? eng.textContent.trim() : '',
+      joinedSignOn: joined ? 'Yes' : 'No',
+      optOutReason: joined ? '' : (reasonEl ? (reasonEl.value || '').trim() : '')
+    };
+  }
+  function submitApplication() {
+    if (SCRIPT_URL.indexOf('PASTE_') === 0) {
+      console.warn('LTA: Apps Script URL not set yet — submission was not sent.');
+      return;
+    }
+    try {
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(collectData())
+      });
+    } catch (e) { console.error('LTA submission error:', e); }
+  }
+
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.step-card'));
+  var railItems = Array.prototype.slice.call(document.querySelectorAll('#rail .step-item'));
+
+  function renderRail() {
+    railItems.forEach(function (li, i) {
+      li.classList.remove('active', 'complete', 'future');
+      if (i === current) li.classList.add('active');
+      else if (completed[i]) li.classList.add('complete');
+      else li.classList.add('future');
+    });
+  }
+
+  function showStep(i) {
+    cards.forEach(function (c, idx) { c.classList.toggle('shown', idx === i); });
+    current = i;
+    renderRail();
+    // scroll the slide area into comfortable view
+    var content = document.querySelector('.steps-content');
+    if (content && content.scrollIntoView) content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // ---- validation ----
+  function validateStep(i) {
+    var card = cards[i];
+    var ok = true;
+    var fields = Array.prototype.slice.call(card.querySelectorAll('.form-field[data-required]'));
+    fields.forEach(function (f) {
+      // skip hidden reason field unless it's actually shown
+      if (f.classList.contains('signon-reason') && !f.classList.contains('shown')) {
+        f.classList.remove('error');
+        return;
+      }
+      var control = f.querySelector('input, textarea, select');
+      if (!control) return;
+      var val = (control.value || '').trim();
+      var valid = val.length > 0;
+      if (valid && f.hasAttribute('data-email')) {
+        valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      }
+      if (!valid) { f.classList.add('error'); ok = false; }
+      else { f.classList.remove('error'); }
+    });
+    return ok;
+  }
+
+  // ---- next / back ----
+  document.querySelectorAll('[data-next]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (!validateStep(current)) return;
+      completed[current] = true;
+      if (current === 3) submitApplication();   // sign-on is the final data step
+      if (current < TOTAL - 1) showStep(current + 1);
+    });
+  });
+  document.querySelectorAll('[data-back]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (current > 0) showStep(current - 1);
+    });
+  });
+
+  // ---- select placeholder color handling ----
+  document.querySelectorAll('.select-wrap select').forEach(function (sel) {
+    sel.addEventListener('change', function () {
+      this.classList.toggle('placeholder', this.value === '');
+    });
+  });
+
+  // ---- engagement radios ----
+  document.querySelectorAll('#engagement [data-engage]').forEach(function (opt) {
+    opt.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelectorAll('#engagement [data-engage]').forEach(function (o) { o.classList.remove('selected'); });
+      this.classList.add('selected');
+    });
+  });
+
+  // ---- sign-on checkbox ----
+  var signCheck = document.getElementById('signon-check');
+  var signReason = document.getElementById('signon-reason');
+  signCheck.addEventListener('click', function () {
+    var nowChecked = !this.classList.contains('checked');
+    this.classList.toggle('checked', nowChecked);
+    // show the reason field only when UNchecked
+    signReason.classList.toggle('shown', !nowChecked);
+    if (nowChecked) signReason.classList.remove('error');
+  });
+
+  // ---- social media rows ----
+  var PLATFORMS = ['X', 'BlueSky', 'Threads', 'Instagram', 'TikTok', 'YouTube', 'Facebook', 'Mastodon'];
+  var socialRows = document.getElementById('social-rows');
+
+  function makeSocialRow(removable) {
+    var row = document.createElement('div');
+    row.className = 'social-row';
+
+    var wrap = document.createElement('div');
+    wrap.className = 'select-wrap';
+    var sel = document.createElement('select');
+    sel.className = 'placeholder';
+    var ph = document.createElement('option');
+    ph.value = ''; ph.selected = true; ph.disabled = true; ph.hidden = true;
+    ph.textContent = 'Select platform';
+    sel.appendChild(ph);
+    PLATFORMS.forEach(function (p) {
+      var o = document.createElement('option');
+      o.value = p; o.textContent = p; sel.appendChild(o);
+    });
+    sel.addEventListener('change', function () { this.classList.toggle('placeholder', this.value === ''); });
+    wrap.appendChild(sel);
+
+    var input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'handle-input';
+    input.placeholder = 'Handle or URL — e.g. @littletech';
+
+    var remove = document.createElement('button');
+    remove.type = 'button';
+    remove.className = 'social-remove';
+    remove.innerHTML = '&times;';
+    remove.title = 'Remove';
+    remove.addEventListener('click', function () { socialRows.removeChild(row); });
+
+    row.appendChild(wrap);
+    row.appendChild(input);
+    if (removable) row.appendChild(remove);
+    else { var spacer = document.createElement('span'); spacer.style.width = '38px'; row.appendChild(spacer); }
+
+    return row;
+  }
+
+  socialRows.appendChild(makeSocialRow(false));
+  document.getElementById('social-add').addEventListener('click', function () {
+    socialRows.appendChild(makeSocialRow(true));
+  });
+
+  renderRail();
+})();
+</script>
+
+</body>
+</html>
