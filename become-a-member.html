@@ -277,6 +277,26 @@
   }
   .privacy-note b { font-style: normal; font-weight: 600; color: var(--paper); }
 
+  /* === AUTOCOMPLETE === */
+  .autocomplete-wrap { position: relative; }
+  .autocomplete-list {
+    display: none;
+    position: absolute; left: 0; right: 0; top: calc(100% + 4px); z-index: 20;
+    background: #0B3B4B;
+    border: 1px solid var(--rule28);
+    border-radius: 4px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+    max-height: 240px; overflow-y: auto;
+  }
+  .autocomplete-item {
+    padding: 11px 14px;
+    font-family: 'Figtree', sans-serif; font-size: 14px;
+    color: var(--paper85); cursor: pointer;
+    border-bottom: 1px solid var(--rule10);
+  }
+  .autocomplete-item:last-child { border-bottom: none; }
+  .autocomplete-item:hover { background: rgba(239,94,28,0.14); color: var(--paper); }
+
   /* === SOCIAL HANDLES === */
   .social-group .label-block {
     font-family: 'Archivo', sans-serif; font-size: 11px; font-weight: 600;
@@ -405,21 +425,6 @@
 </head>
 <body>
 
-<div class="doc-frame">
-
-<header class="doc-header">
-  <h1>LTA — Become a Member Page</h1>
-  <div class="meta">Interactive stepper · v2 · click Next to advance</div>
-</header>
-
-<div class="browser">
-  <div class="browser-bar">
-    <span class="dot" style="background:#FF5F56"></span>
-    <span class="dot" style="background:#FFBD2E"></span>
-    <span class="dot" style="background:#27C93F"></span>
-    <span class="url">littletech.org/become-a-member</span>
-  </div>
-
   <div class="page-content">
 
     <!-- NAVBAR -->
@@ -436,11 +441,6 @@
       <div class="eyebrow">Apply for membership</div>
       <h1>Join LTA</h1>
     </section>
-
-    <!-- MOCKUP NOTE -->
-    <div class="mockup-note">
-      <strong>Mockup note —</strong> This is an interactive prototype. Each section reveals one at a time; complete the required fields and click <b>Next</b> to advance. The progress rail on the left checks off completed sections.
-    </div>
 
     <!-- STEPS LAYOUT -->
     <div class="steps-wrap">
@@ -478,14 +478,17 @@
 
             <div class="form-field" data-required>
               <label>Company website</label>
-              <input type="url" data-field="website" placeholder="https://yourcompany.com" />
+              <input type="url" data-field="website" autocomplete="url" placeholder="https://yourcompany.com" />
               <span class="err-msg">Required</span>
             </div>
 
             <div class="form-field-row">
               <div class="form-field" data-required>
                 <label>Where are you located?</label>
-                <input type="text" data-field="location" placeholder="City, State, ZIP — or country if outside the U.S." />
+                <div class="autocomplete-wrap">
+                  <input type="text" id="location-input" data-field="location" autocomplete="off" placeholder="Start typing your city or address…" />
+                  <div class="autocomplete-list" id="location-list"></div>
+                </div>
                 <span class="err-msg">Required</span>
               </div>
               <div class="form-field" data-required>
@@ -529,12 +532,10 @@
               <b>Confidential.</b> Your answer to the market-cap question is for vetting purposes only — it will not be shared with other members or the public.
             </div>
 
-            <!-- SOCIAL HANDLES -->
-            <div class="social-group" style="margin-top: 26px;">
-              <div class="label-block">Social media <span style="color: var(--paper40); font-weight: 500;">(optional)</span></div>
-              <div class="help-block">Add the handles you'd like us to tag. Select a platform, then enter your handle or URL.</div>
-              <div id="social-rows"></div>
-              <button type="button" class="social-add" id="social-add">+ Add a platform</button>
+            <!-- X (TWITTER) HANDLE -->
+            <div class="form-field" style="margin-top: 26px;">
+              <label>X (Twitter) handle <span class="req">(optional)</span></label>
+              <input type="text" data-field="xhandle" autocomplete="off" placeholder="@yourcompany" />
             </div>
 
             <div class="step-actions">
@@ -557,45 +558,32 @@
             <div class="form-field-row">
               <div class="form-field" data-required>
                 <label>First name</label>
-                <input type="text" data-field="firstName" placeholder="First name" />
+                <input type="text" data-field="firstName" autocomplete="given-name" placeholder="First name" />
                 <span class="err-msg">Required</span>
               </div>
               <div class="form-field" data-required>
                 <label>Last name</label>
-                <input type="text" data-field="lastName" placeholder="Last name" />
+                <input type="text" data-field="lastName" autocomplete="family-name" placeholder="Last name" />
                 <span class="err-msg">Required</span>
               </div>
             </div>
 
             <div class="form-field" data-required>
               <label>Title</label>
-              <input type="text" data-field="title" placeholder="e.g. Founder &amp; CEO" />
+              <input type="text" data-field="title" autocomplete="organization-title" placeholder="e.g. Founder &amp; CEO" />
               <span class="err-msg">Required</span>
             </div>
 
             <div class="form-field-row">
               <div class="form-field" data-required>
                 <label>Phone number</label>
-                <input type="tel" data-field="phone" placeholder="(555) 555-5555" />
+                <input type="tel" data-field="phone" autocomplete="tel" placeholder="(555) 555-5555" />
                 <span class="err-msg">Required</span>
               </div>
               <div class="form-field" data-required data-email>
                 <label>Email address</label>
-                <input type="email" data-field="email" placeholder="you@yourcompany.com" />
+                <input type="email" data-field="email" autocomplete="email" placeholder="you@yourcompany.com" />
                 <span class="err-msg">Enter a valid email</span>
-              </div>
-            </div>
-
-            <div class="form-field-row">
-              <div class="form-field" data-required>
-                <label>City</label>
-                <input type="text" data-field="city" placeholder="City" />
-                <span class="err-msg">Required</span>
-              </div>
-              <div class="form-field" data-required>
-                <label>State</label>
-                <input type="text" data-field="state" placeholder="State" />
-                <span class="err-msg">Required</span>
               </div>
             </div>
 
@@ -660,7 +648,7 @@
           </div>
           <div class="step-body">
             <p class="signon-body">
-              As soon as LTA goes public this summer, we will urge Congress to act on long-stalled legislation to advance competitive markets and support founders, start-ups, and digital innovators. Our first step in that work will be this sign-on letter (<a href="#" id="signon-pdf">click here to download the PDF</a>). We want to show the breadth and depth of industry support for this work, so we're asking our members to sign on. By clicking "Next" you agree to include your company's name on this letter.
+              As soon as LTA goes public this summer, we will urge Congress to act on long-stalled legislation to advance competitive markets and support founders, start-ups, and digital innovators. Our first step in that work will be this sign-on letter (<a href="lta-sign-on-letter.pdf" id="signon-pdf" target="_blank" rel="noopener">click here to download the PDF</a>). We want to show the breadth and depth of industry support for this work, so we're asking our members to sign on. By clicking "Next" you agree to include your company's name on this letter.
             </p>
 
             <div class="signon-check checked" id="signon-check">
@@ -700,8 +688,6 @@
     </div>
 
   </div>
-</div>
-</div>
 
 <script>
 (function () {
@@ -719,12 +705,6 @@
     return el ? (el.value || '').trim() : '';
   }
   function collectData() {
-    var social = [];
-    document.querySelectorAll('#social-rows .social-row').forEach(function (row) {
-      var p = row.querySelector('select');
-      var h = row.querySelector('input');
-      if (p && h && p.value && (h.value || '').trim()) social.push(p.value + ': ' + h.value.trim());
-    });
     var eng = document.querySelector('#engagement .engagement-option.selected .opt-name');
     var joined = document.getElementById('signon-check').classList.contains('checked');
     var reasonEl = document.querySelector('#signon-reason textarea');
@@ -734,14 +714,14 @@
       location: fieldVal('location'),
       segment: fieldVal('segment'),
       marketCap: fieldVal('marketcap'),
-      socialHandles: social.join(' | '),
+      socialHandles: fieldVal('xhandle'),
       firstName: fieldVal('firstName'),
       lastName: fieldVal('lastName'),
       title: fieldVal('title'),
       phone: fieldVal('phone'),
       email: fieldVal('email'),
-      city: fieldVal('city'),
-      state: fieldVal('state'),
+      city: '',
+      state: '',
       engagementLevel: eng ? eng.textContent.trim() : '',
       joinedSignOn: joined ? 'Yes' : 'No',
       optOutReason: joined ? '' : (reasonEl ? (reasonEl.value || '').trim() : '')
@@ -848,55 +828,51 @@
     if (nowChecked) signReason.classList.remove('error');
   });
 
-  // ---- social media rows ----
-  var PLATFORMS = ['X', 'BlueSky', 'Threads', 'Instagram', 'TikTok', 'YouTube', 'Facebook', 'Mastodon'];
-  var socialRows = document.getElementById('social-rows');
-
-  function makeSocialRow(removable) {
-    var row = document.createElement('div');
-    row.className = 'social-row';
-
-    var wrap = document.createElement('div');
-    wrap.className = 'select-wrap';
-    var sel = document.createElement('select');
-    sel.className = 'placeholder';
-    var ph = document.createElement('option');
-    ph.value = ''; ph.selected = true; ph.disabled = true; ph.hidden = true;
-    ph.textContent = 'Select platform';
-    sel.appendChild(ph);
-    PLATFORMS.forEach(function (p) {
-      var o = document.createElement('option');
-      o.value = p; o.textContent = p; sel.appendChild(o);
-    });
-    sel.addEventListener('change', function () { this.classList.toggle('placeholder', this.value === ''); });
-    wrap.appendChild(sel);
-
-    var input = document.createElement('input');
-    input.type = 'text';
-    input.className = 'handle-input';
-    input.placeholder = 'Handle or URL — e.g. @littletech';
-
-    var remove = document.createElement('button');
-    remove.type = 'button';
-    remove.className = 'social-remove';
-    remove.innerHTML = '&times;';
-    remove.title = 'Remove';
-    remove.addEventListener('click', function () { socialRows.removeChild(row); });
-
-    row.appendChild(wrap);
-    row.appendChild(input);
-    if (removable) row.appendChild(remove);
-    else { var spacer = document.createElement('span'); spacer.style.width = '38px'; row.appendChild(spacer); }
-
-    return row;
-  }
-
-  socialRows.appendChild(makeSocialRow(false));
-  document.getElementById('social-add').addEventListener('click', function () {
-    socialRows.appendChild(makeSocialRow(true));
-  });
-
   renderRail();
+})();
+
+// ---- location autocomplete (keyless, OpenStreetMap-based via Photon) ----
+(function () {
+  var input = document.getElementById('location-input');
+  var list = document.getElementById('location-list');
+  if (!input || !list) return;
+  var debounce;
+  function clearList() { list.innerHTML = ''; list.style.display = 'none'; }
+  input.addEventListener('input', function () {
+    var q = input.value.trim();
+    clearTimeout(debounce);
+    if (q.length < 3) { clearList(); return; }
+    debounce = setTimeout(function () {
+      fetch('https://photon.komoot.io/api/?limit=5&lang=en&q=' + encodeURIComponent(q))
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          list.innerHTML = '';
+          if (!data || !data.features || !data.features.length) { clearList(); return; }
+          data.features.forEach(function (f) {
+            var p = f.properties || {};
+            var parts = [];
+            [p.name, p.city, p.state, p.postcode, p.country].forEach(function (x) {
+              if (x && parts.indexOf(x) === -1) parts.push(x);
+            });
+            var label = parts.join(', ');
+            var item = document.createElement('div');
+            item.className = 'autocomplete-item';
+            item.textContent = label;
+            item.addEventListener('mousedown', function (ev) {
+              ev.preventDefault();
+              input.value = label;
+              clearList();
+            });
+            list.appendChild(item);
+          });
+          list.style.display = 'block';
+        })
+        .catch(function () { clearList(); });   // graceful fallback: stays a normal text field
+    }, 220);
+  });
+  document.addEventListener('click', function (e) {
+    if (e.target !== input && !list.contains(e.target)) clearList();
+  });
 })();
 </script>
 
