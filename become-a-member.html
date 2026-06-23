@@ -421,6 +421,37 @@
     font-family: 'Figtree', sans-serif; font-size: 13px; font-weight: 600;
     color: var(--blue); text-decoration: none;
   }
+
+  /* ============ MOBILE ============ */
+  @media (max-width: 768px) {
+    /* Masthead */
+    .masthead { padding: 36px 20px 28px; }
+    .masthead h1 { font-size: 38px; }
+    .mockup-note { margin: 20px 20px 0; }
+
+    /* THE KEY FIX: collapse the two-column form layout to one column so the
+       form fields land directly in view instead of being pushed off to the
+       right. The step rail un-sticks and sits above the form. */
+    .steps-wrap {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      padding: 32px 20px 56px;
+    }
+    .step-rail { position: static; }
+
+    /* Paired / tripled fields stack */
+    .form-field-row,
+    .form-field-row-3 { grid-template-columns: 1fr; gap: 0; }
+    .form-field-row .form-field,
+    .form-field-row-3 .form-field { margin-bottom: 22px; }
+
+    /* Social handle rows: label spans full width, input + remove button share a row */
+    .social-row {
+      grid-template-columns: 1fr auto; gap: 10px;
+      align-items: end;
+    }
+    .social-row > :first-child { grid-column: 1 / -1; }
+  }
 </style>
 </head>
 <body>
@@ -429,7 +460,7 @@
 
     <!-- NAVBAR -->
     <nav class="navbar">
-      <a class="brand" href="index.html">Little Tech Association</a>
+      <a class="brand">Little Tech Association</a>
       <div class="nav-right">
         <a class="nav-link">Mission &amp; Issues</a>
         <a class="nav-cta">Join Us</a>

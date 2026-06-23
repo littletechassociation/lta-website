@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Little Tech Association — Mission &amp; Issues</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --petrol:  #07313F;
+    --paper:   #F7F5F2;
+    --orange:  #CC4812;
+    --vibrant: #EF5E1C;
+    --blue:    #6B8FF0;
+    --paper60: rgba(247, 245, 242, 0.62);
+    --paper72: rgba(247, 245, 242, 0.72);
+    --paper85: rgba(247, 245, 242, 0.85);
+    --rule10:  rgba(247, 245, 242, 0.10);
+    --rule18:  rgba(247, 245, 242, 0.18);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--petrol);
+    color: var(--paper);
+    font-family: 'Figtree', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    overflow: hidden;            /* page itself never scrolls */
+  }
+
+  /* === LOCKUP / NAV (identical to current landing + Join Us pages) === */
+  .lockup { display: flex; align-items: center; }
+  .lockup .mark { display: block; flex-shrink: 0; }
+  .lockup .mark svg { display: block; width: 100%; height: 100%; }
+  .lockup .word { display: flex; flex-direction: column; line-height: 1; font-family: 'Archivo', sans-serif; }
+  .lockup .word .l1 { font-weight: 600; line-height: 1; letter-spacing: -0.02em; }
+  .lockup .word .l2 { font-weight: 400; line-height: 1; letter-spacing: -0.02em; opacity: 0.68; }
+  .lockup-sm { gap: 4.4px; }
+  .lockup-sm .mark { width: 32px; height: 27.71px; }
+  .lockup-sm .word { margin-top: -3.02px; margin-bottom: -3.11px; }
+  .lockup-sm .word .l1 { font-size: 15.8px; margin-left: -9.42px; }
+  .lockup-sm .word .l2 { font-size: 15.8px; margin-top: 0.66px; }
+
+  .navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 56px;
+    border-bottom: 1px solid var(--rule10);
+    background: var(--petrol);
+  }
+  .brand {
+    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 18px;
+    letter-spacing: -0.02em; color: var(--paper);
+  }
+  .nav-right { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: 'Figtree', sans-serif; font-size: 14px; font-weight: 500;
+    color: var(--paper); text-decoration: none;
+  }
+  .nav-link.active { color: var(--vibrant); }
+  .nav-cta {
+    font-family: 'Figtree', sans-serif; font-weight: 600; font-size: 13px;
+    padding: 9px 18px; border-radius: 4px;
+    background: var(--vibrant); color: var(--paper);
+    text-decoration: none; border: none; cursor: pointer;
+  }
+
+  /* === PINNED STAGE === */
+  .stage { position: fixed; inset: 0; z-index: 1; }
+
+  /* section number + group label */
+  .eyebrow {
+    position: fixed; top: 150px; left: 120px; z-index: 30;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--paper60);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .eyebrow .num { color: var(--vibrant); }
+  .eyebrow .sep { width: 26px; height: 1px; background: var(--rule18); }
+
+  /* typed section title — orange, with blinking caret */
+  .title {
+    position: fixed; top: 196px; left: 120px; right: 120px; z-index: 30;
+    font-family: 'Archivo', sans-serif;
+    font-size: 60px; font-weight: 600;
+    line-height: 1.04; letter-spacing: -0.03em;
+    color: var(--vibrant);
+    max-width: 1100px;
+  }
+  .title .caret {
+    display: inline-block; width: 4px; height: 0.86em;
+    background: var(--vibrant); margin-left: 6px;
+    transform: translateY(0.07em);
+    animation: blink 1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* paragraph zone — paper-white body, cross-fades in place === */
+  .explain {
+    position: fixed; top: 320px; left: 120px; right: 120px; z-index: 20;
+    height: 300px;
+    max-width: 800px;
+  }
+  .explain .para {
+    position: absolute; top: 0; left: 0; right: 0;
+    font-family: 'Figtree', sans-serif;
+    font-size: 20px; line-height: 1.64;
+    color: var(--paper);
+    opacity: 0; transform: translateY(14px); filter: blur(4px);
+    transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease;
+    pointer-events: none;
+  }
+  .explain .para.in  { opacity: 1; transform: translateY(0); filter: blur(0); }
+  .explain .para.out { opacity: 0; transform: translateY(-14px); filter: blur(4px); }
+
+  /* === RIGHT DOT RAIL === */
+  .rail {
+    position: fixed; top: 50%; right: 48px; z-index: 50;
+    transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .rail .tick {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--rule18); cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .rail .tick.active { background: var(--vibrant); transform: scale(1.35); }
+
+  /* === SCROLL HINT === */
+  .hint {
+    position: fixed; bottom: 34px; left: 120px; z-index: 30;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--paper60);
+    display: flex; align-items: center; gap: 10px;
+    transition: opacity 0.4s ease;
+  }
+  .hint .arrow { animation: nudge 1.6s ease-in-out infinite; }
+  @keyframes nudge { 0%,100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+
+  /* === SCROLL CAPTURE LAYER === */
+  .scroller {
+    position: fixed; inset: 0; z-index: 40;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+  }
+  .scroller::-webkit-scrollbar { display: none; }
+  .scroller .snap { height: 100vh; scroll-snap-align: start; scroll-snap-stop: always; }
+
+  /* ============ MOBILE (keep scroll-snap engine, reflow pinned text) ============ */
+  @media (max-width: 768px) {
+    .navbar { padding: 16px 20px; }
+    .brand { font-size: 16px; }
+    .nav-right { gap: 16px; }
+    .nav-link { font-size: 13px; }
+
+    /* Pull the pinned text block in from the 120px desktop inset and
+       drop it below the fixed navbar */
+    .eyebrow { top: 84px; left: 20px; }
+
+    .title {
+      top: 118px; left: 20px; right: 20px;
+      font-size: clamp(30px, 8.5vw, 40px);
+    }
+
+    .explain {
+      top: 232px; left: 20px; right: 20px;
+      height: auto; bottom: 96px;     /* fill toward the hint, allow tall paragraphs */
+      max-width: 100%;
+    }
+    .explain .para { font-size: 16px; line-height: 1.6; }
+
+    /* Dot rail tucks to the right edge */
+    .rail { right: 14px; gap: 12px; }
+    .rail .tick { width: 7px; height: 7px; }
+
+    /* Scroll hint */
+    .hint { left: 20px; bottom: 22px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- NAVBAR (matches current landing + Join Us pages) -->
+  <nav class="navbar">
+    <span class="brand">Little Tech Association</span>
+    <div class="nav-right">
+      <a class="nav-link" href="#">Mission &amp; Issues</a>
+      <a class="nav-cta" href="become-a-member.html">Join Us</a>
+    </div>
+  </nav>
+
+  <!-- PINNED STAGE -->
+  <div class="stage">
+    <div class="eyebrow"><span class="num" id="eyeN">01</span><span class="sep"></span><span id="eyeLabel">Our Mission</span></div>
+    <h1 class="title"><span id="titleText"></span><span class="caret"></span></h1>
+    <div class="explain" id="explain"></div>
+  </div>
+
+  <!-- RIGHT DOT RAIL -->
+  <div class="rail" id="rail"></div>
+
+  <!-- SCROLL HINT -->
+  <div class="hint" id="hint"><span>Scroll</span><span class="arrow">↓</span></div>
+
+  <!-- SCROLL CAPTURE LAYER -->
+  <div class="scroller" id="scroller"></div>
+
+<script>
+  const slides = [
+    {
+      eyeN: '01', eyeLabel: 'Our Mission',
+      title: 'Our Mission',
+      html: 'Little Tech Association works to make it easier to start, build, and grow in the digital economy — expanding access to capital and customers, freeing talent to move where their best ideas are, and right-sizing rules so small teams aren\u2019t crushed by compliance costs built for giants. We champion open systems, open standards, and open infrastructure, so the tools people rely on work together and no gatekeeper decides who gets a shot. When markets stay open and competitive, the best products win — on merit, not market power.'
+    },
+    {
+      eyeN: '02', eyeLabel: 'The Issues',
+      title: 'Defending Free Markets',
+      html: 'Competition drives the digital economy, but the free market only works when the laws and regulations governing competition are enforced. Right now a handful of dominant platforms write their own rules, deciding which businesses reach customers and which get buried. LTA fights to open app marketplaces, end self-preferencing, and stop the gatekeeping that lets giants pick winners and losers. LTA presses regulators and lawmakers to halt the monopolistic practices, where entrenched middlemen rake in rents, drive up costs, and crush competition. Founders should win by building better products, not by buying permission from the incumbents.'
+    },
+    {
+      eyeN: '03', eyeLabel: 'The Issues',
+      title: 'Empowering Builders',
+      html: 'Innovative new ideas often come from entrepreneurs and upstarts, not comfortable incumbents. LTA opposes the non-compete agreements that hold tech workers hostage and supports mobility for engineers, researchers, and founders to pursue their best ideas. LTA pushes to expand access to capital — public and private alike — from giving startups a real shot at the government grants and contracts long reserved for the biggest players to ending \u201cdead zones\u201d for early-stage investment. And LTA presses for rules scaled to the company they govern, so small teams aren\u2019t buried under compliance costs intended for trillion-dollar incumbents. The goal is simple: make it easier to start, to grow, and to compete.'
+    },
+    {
+      eyeN: '04', eyeLabel: 'The Issues',
+      title: 'Freeing Consumers',
+      html: 'Consumers should be free to pick the apps that work best for them. Too often they\u2019re trapped by Big Tech, stuck in systems that grow more expensive and less helpful as network effects, egress fees, and dark patterns make it hard to leave. LTA fights for real data portability and against schemes like classroom captivity that lock students and schools inside one company\u2019s system. Consumers ought to have the right to repair and modify their own devices, because your device is your property. LTA defends real privacy, with strong encryption and no government-mandated backdoors, and stands up for consumer free speech against abusive lawsuits used to silence it.'
+    },
+    {
+      eyeN: '05', eyeLabel: 'The Issues',
+      title: 'Keeping AI Competitive',
+      html: 'The future of AI is being decided right now, and a few giants are racing to lock it up before anyone else gets a seat at the table. We\u2019re fighting to stop them. LTA supports open-weight models so startups can build the future instead of renting it from the incumbents, and right-sizing policies governing AI, so entrepreneurs deploying tools aren\u2019t saddled with the same regulations as frontier labs developing foundational models. We back an open AI stack, so trillion-dollar incumbents can\u2019t quietly tax or throttle the companies running on its infrastructure, and workable, and consistent standards that allow people to use trusted AI agents on their behalf across the online ecosystem. Combating tying, gatekeeping, and self-preferencing: this is how we stop dominant players from rigging the game before it even begins.'
+    },
+    {
+      eyeN: '06', eyeLabel: 'The Issues',
+      title: 'Advancing Open Systems',
+      html: 'The internet should be an open system, not a cluster of gated communities. LTA fights for interoperability, so the tools people rely on work together instead of locking them in. Open standards let consumers switch freely, startups compete, and innovators build without limits. In the same vein, no company, no matter how powerful, should get to copyright or lock away public laws or municipal codes — public goods produced by the government don\u2019t belong behind a paywall. Broadly, LTA backs open data infrastructure that gives entrepreneurs a foundation to build on and gives ordinary people the freedom to choose the services that fit their lives.'
+    }
+  ];
+
+  const titleText = document.getElementById('titleText');
+  const explain = document.getElementById('explain');
+  const eyeN = document.getElementById('eyeN');
+  const eyeLabel = document.getElementById('eyeLabel');
+  const hint = document.getElementById('hint');
+  const scroller = document.getElementById('scroller');
+  const rail = document.getElementById('rail');
+
+  slides.forEach((_, i) => {
+    const snap = document.createElement('div');
+    snap.className = 'snap';
+    scroller.appendChild(snap);
+    const t = document.createElement('div');
+    t.className = 'tick';
+    t.addEventListener('click', () => scroller.scrollTo({ top: i * window.innerHeight, behavior: 'smooth' }));
+    rail.appendChild(t);
+  });
+  const ticks = Array.from(rail.children);
+
+  let current = -1;
+  let typeTimer = null;
+
+  function typeTitle(text) {
+    clearTimeout(typeTimer);
+    titleText.textContent = '';
+    let n = 0;
+    (function step() {
+      if (n <= text.length) {
+        titleText.textContent = text.slice(0, n);
+        n++;
+        typeTimer = setTimeout(step, 48);
+      }
+    })();
+  }
+
+  function render(i) {
+    if (i === current) return;
+
+    typeTitle(slides[i].title);
+
+    const old = explain.querySelector('.para.in');
+    if (old) { old.classList.remove('in'); old.classList.add('out'); setTimeout(() => old.remove(), 520); }
+    const div = document.createElement('div');
+    div.className = 'para';
+    div.innerHTML = slides[i].html;
+    explain.appendChild(div);
+    requestAnimationFrame(() => { div.classList.add('in'); });
+
+    hint.style.opacity = (i === slides.length - 1) ? '0' : '1';
+    eyeN.textContent = slides[i].eyeN;
+    eyeLabel.textContent = slides[i].eyeLabel;
+    ticks.forEach((t, k) => t.classList.toggle('active', k === i));
+
+    current = i;
+  }
+
+  let ticking = false;
+  scroller.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const idx = Math.round(scroller.scrollTop / window.innerHeight);
+      render(Math.max(0, Math.min(slides.length - 1, idx)));
+      ticking = false;
+    });
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+      scroller.scrollTo({ top: Math.min(current + 1, slides.length - 1) * window.innerHeight, behavior: 'smooth' });
+    } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+      scroller.scrollTo({ top: Math.max(current - 1, 0) * window.innerHeight, behavior: 'smooth' });
+    }
+  });
+
+  render(0);
+</script>
+
+</body>
+</html>

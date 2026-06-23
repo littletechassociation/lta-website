@@ -148,6 +148,47 @@
   }
   .join-btn:hover { background: #ff6a26; transform: translateY(-1px); }
   .join-btn:active { transform: translateY(0) scale(0.99); }
+
+  /* ============ MOBILE (scroll-enabled, un-pinned) ============ */
+  @media (max-width: 768px) {
+    /* Let the page scroll instead of forcing one pinned screen */
+    body { overflow: auto; }
+
+    /* Topbar returns to normal flow and stacks brand over nav */
+    .topbar {
+      position: static;
+      flex-direction: column; align-items: flex-start; gap: 14px;
+      padding: 24px 20px 0;
+    }
+    .nav { gap: 22px; }
+
+    /* Stage stops being a fixed full-viewport layer */
+    .stage {
+      position: static; inset: auto;
+      padding: 0 20px 56px;
+    }
+
+    /* Hero flows below the topbar instead of being pinned at 22% */
+    .hero {
+      position: static; left: auto; right: auto;
+      margin-top: 36px;
+    }
+    .headline {
+      font-size: clamp(28px, 8vw, 40px);
+      min-height: 0;            /* drop the 3-line reservation on mobile */
+    }
+    .hero-body { font-size: 15px; margin-top: 22px; }
+
+    /* Join zone flows after the hero, centered, no longer pinned to bottom third */
+    .join-zone {
+      position: static; height: auto;
+      margin-top: 48px;
+      gap: 18px;
+      pointer-events: auto;     /* whole zone tappable area in flow */
+    }
+    .join-tagline { font-size: clamp(17px, 4.6vw, 20px); }
+    .join-btn { padding: 16px 44px; }
+  }
 </style>
 </head>
 <body>
@@ -155,7 +196,7 @@
   <div class="topbar">
     <div class="brand">Little Tech Association</div>
     <nav class="nav">
-      <a href="mission-and-issues.html">Mission &amp; Issues</a>
+      <a href="#">Mission &amp; Issues</a>
       <a href="become-a-member.html">Join Us</a>
     </nav>
   </div>
