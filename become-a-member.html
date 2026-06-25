@@ -332,6 +332,7 @@
     letter-spacing: 0.12em; text-transform: uppercase; color: var(--vibrant);
     margin-bottom: 8px;
   }
+  .logo-label .req { color: var(--paper40); font-weight: 500; }
   .logo-help {
     font-family: 'Figtree', sans-serif; font-size: 14px; line-height: 1.55;
     color: var(--paper85); margin: 0 0 16px;
@@ -697,8 +698,8 @@
 
             <!-- LOGO BLOCK -->
             <div class="logo-block">
-              <label class="logo-label">Your logo</label>
-              <p class="logo-help">Please submit a hi-res version so we can represent you accurately on member materials. SVG, EPS, PNG, or JPEG, up to 40&nbsp;MB. Your logo will be included on LTAs Membership page alongside those of other member companies. If you don't have it handy you can skip this question for now and we will follow-up (or check the box below).</p>
+              <label class="logo-label"><span class="req">(Optional)</span> Your logo</label>
+              <p class="logo-help">Please submit a hi-res version so we can represent you accurately on member materials. SVG, EPS, PNG, or JPEG, up to 40&nbsp;MB. If you don't have it handy you can skip this question for now.</p>
 
               <div class="logo-drop" id="logo-drop">
                 <div class="ld-icon">↑</div>
@@ -730,11 +731,11 @@
             </p>
 
             <div class="engagement-options" id="engagement">
-              <label class="engagement-option selected" data-engage>
+              <label class="engagement-option" data-engage>
                 <span class="radio"></span>
                 <span class="copy">
-                  <span class="opt-name">Opt-In</span>
-                  <span class="opt-desc">LTA may use our name or logo on specific materials. No advance notification is necessary.</span>
+                  <span class="opt-name">Opt-Out</span>
+                  <span class="opt-desc">LTA may NOT use our name or logo on specific materials unless the association receives advance approval in writing.</span>
                 </span>
               </label>
 
@@ -746,11 +747,11 @@
                 </span>
               </label>
 
-              <label class="engagement-option" data-engage>
+              <label class="engagement-option selected" data-engage>
                 <span class="radio"></span>
                 <span class="copy">
-                  <span class="opt-name">Opt-Out</span>
-                  <span class="opt-desc">LTA may NOT use our name or logo on specific materials unless the association receives advance approval in writing.</span>
+                  <span class="opt-name">Opt-In</span>
+                  <span class="opt-desc">LTA may use our name or logo on specific materials. No advance notification is necessary.</span>
                 </span>
               </label>
             </div>
