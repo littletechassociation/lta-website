@@ -718,11 +718,6 @@
               </div>
 
               <div class="logo-error" id="logo-error"></div>
-
-              <label class="logo-check" id="logo-scrape-check">
-                <span class="box"></span>
-                <span class="box-label">Don't have a file handy? Check here to authorize LTA to pull your logo from your website instead.</span>
-              </label>
             </div>
             <div class="block-divider"></div>
 
@@ -850,8 +845,7 @@
       engagementLevel: eng ? eng.textContent.trim() : '',
       joinedSignOn: joined ? 'Yes' : 'No',
       optOutReason: joined ? '' : (reasonEl ? (reasonEl.value || '').trim() : ''),
-      logoUrl: logoUrl,
-      logoScrapeAuthorized: document.getElementById('logo-scrape-check').classList.contains('checked') ? 'Yes' : 'No'
+      logoUrl: logoUrl
     };
   }
   function submitApplication() {
@@ -967,7 +961,6 @@
   var logoTrack = document.getElementById('logo-progress-track');
   var logoRemove = document.getElementById('logo-remove');
   var logoError = document.getElementById('logo-error');
-  var logoScrapeCheck = document.getElementById('logo-scrape-check');
 
   function logoResolveType(file) {
     var t = (file.type || '').toLowerCase();
@@ -1049,7 +1042,6 @@
       if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) logoHandleFile(e.dataTransfer.files[0]);
     });
     logoRemove.addEventListener('click', function (e) { e.stopPropagation(); logoReset(); logoClearError(); });
-    logoScrapeCheck.addEventListener('click', function () { this.classList.toggle('checked'); });
   }
 
   renderRail();
