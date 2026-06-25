@@ -476,6 +476,43 @@
     font-family: 'Figtree', sans-serif; font-size: 13px; font-weight: 600;
     color: var(--blue); text-decoration: none;
   }
+  /* === MOBILE === */
+  @media (max-width: 768px) {
+    .navbar { padding: 16px 20px; }
+    .nav-right { gap: 16px; }
+    .nav-link { font-size: 13px; }
+
+    .masthead { padding: 38px 20px 28px; }
+    .masthead h1 { font-size: 38px; letter-spacing: -0.025em; }
+    .masthead .eyebrow { margin-bottom: 16px; }
+
+    .steps-wrap {
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding: 28px 20px 56px;
+    }
+    .step-rail { display: none; }            /* progress shown by each card's "Step X of 5" */
+    .steps-content { min-height: 0; max-width: 100%; }
+
+    .step-card .step-head { padding: 18px 20px; gap: 10px; }
+    .step-card .step-head h2 { font-size: 18px; }
+    .step-card .step-body { padding: 20px 20px 24px; }
+
+    .form-field-row, .form-field-row-3 { grid-template-columns: 1fr; gap: 0; }
+    .form-field-row .form-field, .form-field-row-3 .form-field { margin-bottom: 22px; }
+
+    .engagement-option { padding: 18px 18px; }
+    .logo-drop { padding: 22px 18px; }
+  }
+
+  @media (max-width: 420px) {
+    .navbar { padding: 14px 16px; }
+    .brand { font-size: 15px; }
+    .nav-right { gap: 12px; }
+    .nav-link { font-size: 12px; }
+    .nav-cta { font-size: 12px; padding: 8px 14px; }
+    .masthead h1 { font-size: 32px; }
+  }
 </style>
 </head>
 <body>
