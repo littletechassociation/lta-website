@@ -324,6 +324,61 @@
   }
   .social-add:hover { background: rgba(239,94,28,0.06); }
 
+  /* === LOGO BLOCK === */
+  .logo-block { margin-bottom: 4px; }
+  .logo-label {
+    display: block;
+    font-family: 'Archivo', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--vibrant);
+    margin-bottom: 8px;
+  }
+  .logo-help {
+    font-family: 'Figtree', sans-serif; font-size: 14px; line-height: 1.55;
+    color: var(--paper85); margin: 0 0 16px;
+  }
+  .logo-drop {
+    border: 1.5px dashed var(--rule28); border-radius: 6px;
+    padding: 26px 22px; text-align: center; cursor: pointer;
+    transition: border-color .15s, background .15s;
+  }
+  .logo-drop:hover, .logo-drop.dragover { border-color: var(--vibrant); background: rgba(239,94,28,0.05); }
+  .logo-drop .ld-icon { font-size: 22px; color: var(--vibrant); line-height: 1; margin-bottom: 8px; }
+  .logo-drop .ld-main { font-family: 'Figtree', sans-serif; font-weight: 600; font-size: 14px; color: var(--paper); }
+  .logo-drop .ld-sub {
+    font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--paper60); margin-top: 6px;
+  }
+  .logo-status { display: none; margin-top: 4px; }
+  .logo-status.show { display: block; }
+  .logo-file-row {
+    display: flex; align-items: center; gap: 12px;
+    background: rgba(247,245,242,0.04); border: 1px solid var(--rule18);
+    border-radius: 6px; padding: 14px 16px;
+  }
+  .logo-file-row .lf-name { font-family: 'Figtree', sans-serif; font-size: 14px; color: var(--paper); flex: 1; word-break: break-all; }
+  .logo-file-row .lf-status { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.04em; color: var(--vibrant); }
+  .logo-remove { background: transparent; border: none; color: var(--paper60); font-family: 'Figtree', sans-serif; font-size: 13px; cursor: pointer; text-decoration: underline; }
+  .logo-remove:hover { color: var(--vibrant); }
+  .logo-progress-track { height: 5px; background: var(--rule18); border-radius: 3px; overflow: hidden; margin-top: 10px; }
+  .logo-progress-bar { height: 100%; width: 0%; background: var(--vibrant); transition: width .15s ease; }
+  .logo-error {
+    display: none; font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+    letter-spacing: 0.04em; text-transform: uppercase; color: var(--vibrant); margin-top: 8px;
+  }
+  .logo-error.show { display: block; }
+  .logo-check { display: flex; align-items: flex-start; gap: 12px; margin-top: 16px; cursor: pointer; }
+  .logo-check .box {
+    width: 18px; height: 18px; border-radius: 4px; border: 1.5px solid var(--rule28);
+    flex-shrink: 0; margin-top: 1px; position: relative; transition: all .12s;
+  }
+  .logo-check.checked .box { background: var(--vibrant); border-color: var(--vibrant); }
+  .logo-check.checked .box::after {
+    content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-52%);
+    color: var(--paper); font-size: 12px; font-weight: 700;
+  }
+  .logo-check .box-label { font-family: 'Figtree', sans-serif; font-size: 14px; line-height: 1.5; color: var(--paper85); }
+  .block-divider { height: 1px; background: var(--rule10); margin: 30px 0; }
+
   /* === ENGAGEMENT === */
   .engagement-options { display: flex; flex-direction: column; gap: 10px; }
   .engagement-option {
@@ -421,37 +476,6 @@
     font-family: 'Figtree', sans-serif; font-size: 13px; font-weight: 600;
     color: var(--blue); text-decoration: none;
   }
-
-  /* ============ MOBILE ============ */
-  @media (max-width: 768px) {
-    /* Masthead */
-    .masthead { padding: 36px 20px 28px; }
-    .masthead h1 { font-size: 38px; }
-    .mockup-note { margin: 20px 20px 0; }
-
-    /* THE KEY FIX: collapse the two-column form layout to one column so the
-       form fields land directly in view instead of being pushed off to the
-       right. The step rail un-sticks and sits above the form. */
-    .steps-wrap {
-      grid-template-columns: 1fr;
-      gap: 28px;
-      padding: 32px 20px 56px;
-    }
-    .step-rail { position: static; }
-
-    /* Paired / tripled fields stack */
-    .form-field-row,
-    .form-field-row-3 { grid-template-columns: 1fr; gap: 0; }
-    .form-field-row .form-field,
-    .form-field-row-3 .form-field { margin-bottom: 22px; }
-
-    /* Social handle rows: label spans full width, input + remove button share a row */
-    .social-row {
-      grid-template-columns: 1fr auto; gap: 10px;
-      align-items: end;
-    }
-    .social-row > :first-child { grid-column: 1 / -1; }
-  }
 </style>
 </head>
 <body>
@@ -460,9 +484,9 @@
 
     <!-- NAVBAR -->
     <nav class="navbar">
-      <a class="brand" href="index.html">Little Tech Association</a>
+      <a class="brand">Little Tech Association</a>
       <div class="nav-right">
-        <a class="nav-link" href="LTA_MissionIssues_GenericMission_v2.html">Mission &amp; Issues</a>
+        <a class="nav-link">Mission &amp; Issues</a>
         <a class="nav-cta">Join Us</a>
       </div>
     </nav>
@@ -633,6 +657,37 @@
             <span class="status">Step 3 of 5</span>
           </div>
           <div class="step-body">
+
+            <!-- LOGO BLOCK -->
+            <div class="logo-block">
+              <label class="logo-label">Your logo</label>
+              <p class="logo-help">Please submit a hi-res version so we can represent you accurately on member materials. SVG, EPS, PNG, or JPEG, up to 40&nbsp;MB. Your logo will be included on LTAs Membership page alongside those of other member companies. If you don't have it handy you can skip this question for now and we will follow-up (or check the box below).</p>
+
+              <div class="logo-drop" id="logo-drop">
+                <div class="ld-icon">↑</div>
+                <div class="ld-main">Choose a file or drag it here</div>
+                <div class="ld-sub">SVG · EPS · PNG · JPEG · max 40 MB</div>
+              </div>
+              <input type="file" id="logo-input" accept=".svg,.eps,.png,.jpg,.jpeg,image/svg+xml,application/postscript,image/png,image/jpeg" style="display:none" />
+
+              <div class="logo-status" id="logo-status">
+                <div class="logo-file-row">
+                  <span class="lf-name" id="logo-name"></span>
+                  <span class="lf-status" id="logo-status-label">Uploading…</span>
+                  <button type="button" class="logo-remove" id="logo-remove" style="display:none">Remove</button>
+                </div>
+                <div class="logo-progress-track" id="logo-progress-track"><div class="logo-progress-bar" id="logo-progress-bar"></div></div>
+              </div>
+
+              <div class="logo-error" id="logo-error"></div>
+
+              <label class="logo-check" id="logo-scrape-check">
+                <span class="box"></span>
+                <span class="box-label">Don't have a file handy? Check here to authorize LTA to pull your logo from your website instead.</span>
+              </label>
+            </div>
+            <div class="block-divider"></div>
+
             <p class="form-intro">
               In the course of our work, LTA produces digital and physical advocacy materials. Some — like press statements — carry only LTA's brand. Others — like sign-on letters — use member company names and logos to maximize impact. Advocacy can move fast; we may need to pull together such materials on short notice. <strong style="color: var(--paper); font-weight: 600;">What are your preferences regarding the use of your company name and logo?</strong>
             </p>
@@ -711,7 +766,7 @@
             <span class="check-icon">✓</span>
             <h3>Thank you!</h3>
             <p class="body">Thanks for applying to be part of the Little Tech Association. A member of our team will be in touch shortly.</p>
-            <a class="return-link" href="index.html">← Return to littletech.org</a>
+            <a class="return-link" href="#">← Return to littletech.org</a>
           </div>
         </div>
 
@@ -725,6 +780,7 @@
   var TOTAL = 5;
   var current = 0;
   var completed = {};
+  var logoUrl = '';
 
   // ===== BACKEND SUBMISSION =====
   // 1. Set up the Google Apps Script web app (see setup checklist).
@@ -755,7 +811,9 @@
       state: '',
       engagementLevel: eng ? eng.textContent.trim() : '',
       joinedSignOn: joined ? 'Yes' : 'No',
-      optOutReason: joined ? '' : (reasonEl ? (reasonEl.value || '').trim() : '')
+      optOutReason: joined ? '' : (reasonEl ? (reasonEl.value || '').trim() : ''),
+      logoUrl: logoUrl,
+      logoScrapeAuthorized: document.getElementById('logo-scrape-check').classList.contains('checked') ? 'Yes' : 'No'
     };
   }
   function submitApplication() {
@@ -858,6 +916,103 @@
     signReason.classList.toggle('shown', !nowChecked);
     if (nowChecked) signReason.classList.remove('error');
   });
+
+  // ---- logo upload (Section 3) ----
+  var LOGO_FN_URL = 'https://lta-logo-upload-url-689342826099.us-east4.run.app';
+  var LOGO_MAX = 40 * 1024 * 1024;
+  var logoInput = document.getElementById('logo-input');
+  var logoDrop = document.getElementById('logo-drop');
+  var logoStatus = document.getElementById('logo-status');
+  var logoNameEl = document.getElementById('logo-name');
+  var logoStatusLabel = document.getElementById('logo-status-label');
+  var logoBar = document.getElementById('logo-progress-bar');
+  var logoTrack = document.getElementById('logo-progress-track');
+  var logoRemove = document.getElementById('logo-remove');
+  var logoError = document.getElementById('logo-error');
+  var logoScrapeCheck = document.getElementById('logo-scrape-check');
+
+  function logoResolveType(file) {
+    var t = (file.type || '').toLowerCase();
+    if (t === 'image/svg+xml' || t === 'application/postscript' || t === 'image/png' || t === 'image/jpeg') return t;
+    var n = (file.name || '').toLowerCase();           // browsers often report EPS as empty type
+    if (/\.svg$/.test(n)) return 'image/svg+xml';
+    if (/\.eps$/.test(n)) return 'application/postscript';
+    if (/\.png$/.test(n)) return 'image/png';
+    if (/\.jpe?g$/.test(n)) return 'image/jpeg';
+    return '';
+  }
+  function logoShowError(msg) { logoError.textContent = msg; logoError.classList.add('show'); }
+  function logoClearError() { logoError.textContent = ''; logoError.classList.remove('show'); }
+  function logoReset() {
+    logoUrl = '';
+    logoStatus.classList.remove('show');
+    logoBar.style.width = '0%';
+    logoTrack.style.display = 'block';
+    logoRemove.style.display = 'none';
+    if (logoInput) logoInput.value = '';
+    logoDrop.style.display = 'block';
+  }
+  function logoHandleFile(file) {
+    logoClearError();
+    var ct = logoResolveType(file);
+    if (!ct) { logoShowError('Unsupported file type — use SVG, EPS, PNG, or JPEG.'); return; }
+    if (file.size > LOGO_MAX) { logoShowError('That file is over the 40 MB limit.'); return; }
+
+    logoDrop.style.display = 'none';
+    logoStatus.classList.add('show');
+    logoNameEl.textContent = file.name;
+    logoStatusLabel.textContent = 'Uploading…';
+    logoTrack.style.display = 'block';
+    logoBar.style.width = '0%';
+    logoRemove.style.display = 'none';
+
+    fetch(LOGO_FN_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ filename: file.name, contentType: ct, size: file.size })
+    })
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (!data || !data.uploadUrl) { throw new Error((data && data.error) || 'No upload URL'); }
+      var xhr = new XMLHttpRequest();
+      xhr.open('PUT', data.uploadUrl, true);
+      xhr.setRequestHeader('Content-Type', ct);
+      xhr.upload.onprogress = function (e) {
+        if (e.lengthComputable) logoBar.style.width = Math.round(e.loaded / e.total * 100) + '%';
+      };
+      xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          logoUrl = data.publicUrl;
+          logoBar.style.width = '100%';
+          logoStatusLabel.textContent = 'Uploaded ✓';
+          logoTrack.style.display = 'none';
+          logoRemove.style.display = 'inline';
+        } else {
+          logoShowError('Upload failed — please try again.');
+          logoReset();
+        }
+      };
+      xhr.onerror = function () { logoShowError('Upload failed — check your connection and try again.'); logoReset(); };
+      xhr.send(file);
+    })
+    .catch(function (err) { console.error('logo upload:', err); logoShowError('Could not start the upload — please try again.'); logoReset(); });
+  }
+
+  if (logoDrop) {
+    logoDrop.addEventListener('click', function () { logoInput.click(); });
+    logoInput.addEventListener('change', function () { if (logoInput.files && logoInput.files[0]) logoHandleFile(logoInput.files[0]); });
+    ['dragenter', 'dragover'].forEach(function (ev) {
+      logoDrop.addEventListener(ev, function (e) { e.preventDefault(); logoDrop.classList.add('dragover'); });
+    });
+    ['dragleave', 'drop'].forEach(function (ev) {
+      logoDrop.addEventListener(ev, function (e) { e.preventDefault(); logoDrop.classList.remove('dragover'); });
+    });
+    logoDrop.addEventListener('drop', function (e) {
+      if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) logoHandleFile(e.dataTransfer.files[0]);
+    });
+    logoRemove.addEventListener('click', function (e) { e.stopPropagation(); logoReset(); logoClearError(); });
+    logoScrapeCheck.addEventListener('click', function () { this.classList.toggle('checked'); });
+  }
 
   renderRail();
 })();
