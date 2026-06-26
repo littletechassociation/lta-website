@@ -408,6 +408,11 @@
     width: 9px; height: 9px; background: var(--vibrant); border-radius: 50%;
   }
 
+  .subhead {
+    font-family: 'Archivo', sans-serif; font-size: 18px; font-weight: 600;
+    letter-spacing: -0.01em; color: var(--paper); margin: 0 0 14px;
+  }
+
   /* === SIGN-ON LETTER === */
   .signon-body {
     font-family: 'Figtree', sans-serif; font-size: 15px; line-height: 1.65;
@@ -765,23 +770,28 @@
         <div class="step-card" data-step="3">
           <div class="step-head">
             <span class="step-num">04</span>
-            <h2>Join LTA's Launch Sign-on Letter</h2>
+            <h2>Our 1st Sign-On Letter</h2>
             <span class="status">Step 4 of 5</span>
           </div>
           <div class="step-body">
             <p class="signon-body">
-              As soon as LTA goes public this summer, we will urge Congress to act on long-stalled legislation to advance competitive markets and support founders, start-ups, and digital innovators. Our first step in that work will be this sign-on letter (<a href="lta-sign-on-letter.pdf" id="signon-pdf" target="_blank" rel="noopener">click here to download the PDF</a>). We want to show the breadth and depth of industry support for this work, so we're asking our members to sign on. By clicking "Next" you agree to include your company's name on this letter.
+              Our first coalition letter to Congress is about competition policy (<a href="lta-sign-on-letter.pdf" id="signon-pdf" target="_blank" rel="noopener">read it here</a>): stopping dominant platforms from using market power, not better products, to box out the next generation of builders.
             </p>
 
             <div class="signon-check checked" id="signon-check">
               <span class="box"></span>
-              <span class="box-label">Yes, add our name!</span>
+              <span class="box-label">Add our company's name to the letter</span>
             </div>
 
-            <div class="form-field signon-reason" id="signon-reason" data-required>
-              <label>Could you briefly tell us why you opted not to join the sign-on letter?</label>
-              <textarea rows="3" placeholder="A sentence or two is fine."></textarea>
-              <span class="err-msg">Please tell us why before continuing</span>
+            <div class="block-divider"></div>
+
+            <h3 class="subhead">Gathering Your Input</h3>
+            <p class="signon-body">
+              LTA will work across a slate of issues - from expanding access to customers and capital, to freeing talent to build, and right-sizing rules so small teams aren't buried in compliance costs designed for giants. We want to know what other issues you'd like LTA to tackle...
+            </p>
+
+            <div class="form-field">
+              <textarea data-field="otherIssues" rows="4" placeholder="Issues, fights, policies you care about - rants encouraged"></textarea>
             </div>
 
             <div class="step-actions">
@@ -829,7 +839,6 @@
   function collectData() {
     var eng = document.querySelector('#engagement .engagement-option.selected .opt-name');
     var joined = document.getElementById('signon-check').classList.contains('checked');
-    var reasonEl = document.querySelector('#signon-reason textarea');
     return {
       companyDescription: fieldVal('description'),
       website: fieldVal('website'),
@@ -846,7 +855,7 @@
       state: '',
       engagementLevel: eng ? eng.textContent.trim() : '',
       joinedSignOn: joined ? 'Yes' : 'No',
-      optOutReason: joined ? '' : (reasonEl ? (reasonEl.value || '').trim() : ''),
+      otherIssues: fieldVal('otherIssues'),
       logoUrl: logoUrl
     };
   }
@@ -891,11 +900,6 @@
     var ok = true;
     var fields = Array.prototype.slice.call(card.querySelectorAll('.form-field[data-required]'));
     fields.forEach(function (f) {
-      // skip hidden reason field unless it's actually shown
-      if (f.classList.contains('signon-reason') && !f.classList.contains('shown')) {
-        f.classList.remove('error');
-        return;
-      }
       var control = f.querySelector('input, textarea, select');
       if (!control) return;
       var val = (control.value || '').trim();
@@ -942,13 +946,8 @@
 
   // ---- sign-on checkbox ----
   var signCheck = document.getElementById('signon-check');
-  var signReason = document.getElementById('signon-reason');
   signCheck.addEventListener('click', function () {
-    var nowChecked = !this.classList.contains('checked');
-    this.classList.toggle('checked', nowChecked);
-    // show the reason field only when UNchecked
-    signReason.classList.toggle('shown', !nowChecked);
-    if (nowChecked) signReason.classList.remove('error');
+    this.classList.toggle('checked');
   });
 
   // ---- logo upload (Section 3) ----
