@@ -413,6 +413,40 @@
     letter-spacing: -0.01em; color: var(--paper); margin: 0 0 14px;
   }
 
+  /* === LAUNCH LETTERS === */
+  .letter-check {
+    display: flex; align-items: flex-start; gap: 14px;
+    background: rgba(239,94,28,0.06); border: 1px solid rgba(239,94,28,0.4);
+    border-radius: 4px; padding: 18px 22px; cursor: pointer; margin-bottom: 12px;
+  }
+  .letter-check .box {
+    width: 20px; height: 20px; border-radius: 4px; flex-shrink: 0;
+    border: 1.5px solid var(--rule28); position: relative; margin-top: 2px; transition: all 0.12s;
+  }
+  .letter-check.checked .box { background: var(--vibrant); border-color: var(--vibrant); }
+  .letter-check.checked .box::after {
+    content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-52%);
+    color: var(--paper); font-size: 13px; font-weight: 700;
+  }
+  .letter-copy { display: flex; flex-direction: column; gap: 6px; }
+  .letter-label {
+    font-family: 'Archivo', sans-serif; font-size: 15px; font-weight: 600;
+    letter-spacing: -0.01em; color: var(--paper); line-height: 1.4;
+  }
+  .letter-link {
+    font-family: 'Figtree', sans-serif; font-size: 13px; font-weight: 600;
+    color: var(--blue); text-decoration: underline; text-underline-offset: 2px;
+    white-space: nowrap; margin-left: 4px;
+  }
+  .letter-sub {
+    font-family: 'Figtree', sans-serif; font-size: 13px; line-height: 1.55; color: var(--paper72);
+  }
+  .next-microcopy {
+    font-family: 'Figtree', sans-serif; font-size: 12.5px; line-height: 1.5;
+    color: var(--paper60); margin: 18px 0 0;
+  }
+  .next-microcopy #microcopy-company { color: var(--paper85); font-weight: 600; }
+
   /* === SIGN-ON LETTER === */
   .signon-body {
     font-family: 'Figtree', sans-serif; font-size: 15px; line-height: 1.65;
@@ -554,7 +588,7 @@
           <li class="step-item active" data-rail="0"><span class="num">01</span><span class="name">Your company</span></li>
           <li class="step-item future"  data-rail="1"><span class="num">02</span><span class="name">Point of contact</span></li>
           <li class="step-item future"  data-rail="2"><span class="num">03</span><span class="name">Engagement level</span></li>
-          <li class="step-item future"  data-rail="3"><span class="num">04</span><span class="name">Sign-on letter</span></li>
+          <li class="step-item future"  data-rail="3"><span class="num">04</span><span class="name">Speak up &amp; sign on</span></li>
           <li class="step-item future"  data-rail="4"><span class="num">05</span><span class="name">Complete</span></li>
         </ol>
       </aside>
@@ -571,6 +605,12 @@
           </div>
           <div class="step-body">
             <p class="form-intro">Help us understand your company so we can advocate effectively on your behalf.</p>
+
+            <div class="form-field" data-required>
+              <label>Company name</label>
+              <input type="text" data-field="companyName" autocomplete="organization" placeholder="Your company's name" />
+              <span class="err-msg">Required</span>
+            </div>
 
             <div class="form-field" data-required>
               <label>In a sentence, describe your company.</label>
@@ -770,29 +810,50 @@
         <div class="step-card" data-step="3">
           <div class="step-head">
             <span class="step-num">04</span>
-            <h2>Our 1st Sign-On Letter</h2>
+            <h2>Speak up, then sign on</h2>
             <span class="status">Step 4 of 5</span>
           </div>
           <div class="step-body">
             <p class="signon-body">
-              Our first coalition letter to Congress is about competition policy (<a href="lta-sign-on-letter.pdf" id="signon-pdf" target="_blank" rel="noopener">read it here</a>): stopping dominant platforms from using market power, not better products, to box out the next generation of builders.
+              This step does two things. First, tell us what you want LTA fighting for — we're building this for you, so be specific and don't hold back. Second, add your name to the two letters we'll fire off the morning we go public. The more founders behind us on day one, the harder we land.
             </p>
 
-            <div class="signon-check checked" id="signon-check">
-              <span class="box"></span>
-              <span class="box-label">Add our company's name to the letter</span>
+            <div class="block-divider"></div>
+
+            <!-- FEEDBACK -->
+            <h3 class="subhead">What should LTA fight for?</h3>
+            <p class="signon-body">
+              You see the fights up close — the platform that buries you, the fee that bleeds you, the rule that boxes you out. Tell us what's slowing your company down, which battles matter most, and how LTA can actually be useful to you. Rant as long as you like; every word goes straight to the team. (Optional, but the more the better.)
+            </p>
+            <div class="form-field">
+              <textarea data-field="otherIssues" rows="5" placeholder="Tell us everything…"></textarea>
             </div>
 
             <div class="block-divider"></div>
 
-            <h3 class="subhead">Gathering Your Input</h3>
+            <!-- LAUNCH LETTERS -->
+            <h3 class="subhead">Sign the launch letters</h3>
             <p class="signon-body">
-              LTA will work across a slate of issues - from expanding access to customers and capital, to freeing talent to build, and right-sizing rules so small teams aren't buried in compliance costs designed for giants. We want to know what other issues you'd like LTA to tackle...
+              LTA isn't tiptoeing into Washington. The day we go public, we're sending two letters — one to the Trump Administration, one to Congress — with every member's name attached. We want that list long enough that nobody can pretend Little Tech doesn't have a seat at the table.
             </p>
 
-            <div class="form-field">
-              <textarea data-field="otherIssues" rows="4" placeholder="Issues, fights, policies you care about - rants encouraged"></textarea>
+            <div class="letter-check checked" id="letter-ai" data-letter>
+              <span class="box"></span>
+              <span class="letter-copy">
+                <span class="letter-label">Add us to the AI Access Letter to the Administration <a class="letter-link" href="#">read the full letter →</a></span>
+                <span class="letter-sub">Calls on the Administration to keep frontier AI open to startups — and to scrap the closed-door vetting regime that routes the most powerful models to the biggest incumbents and shuts the rest of us out.</span>
+              </span>
             </div>
+
+            <div class="letter-check checked" id="letter-congress" data-letter>
+              <span class="box"></span>
+              <span class="letter-copy">
+                <span class="letter-label">Add us to the Competition Letter to Congress <a class="letter-link" href="lta-sign-on-letter.pdf" target="_blank" rel="noopener">read the full letter →</a></span>
+                <span class="letter-sub">Tells Congress to stop stalling on the reforms that would level the field — ending the self-preferencing, app-store gatekeeping, and customer lock-in that kill startups before they can scale.</span>
+              </span>
+            </div>
+
+            <p class="next-microcopy" id="next-microcopy"></p>
 
             <div class="step-actions">
               <button class="btn-secondary" data-back>Back</button>
@@ -838,8 +899,10 @@
   }
   function collectData() {
     var eng = document.querySelector('#engagement .engagement-option.selected .opt-name');
-    var joined = document.getElementById('signon-check').classList.contains('checked');
+    var aiLetter = document.getElementById('letter-ai').classList.contains('checked');
+    var congressLetter = document.getElementById('letter-congress').classList.contains('checked');
     return {
+      companyName: fieldVal('companyName'),
       companyDescription: fieldVal('description'),
       website: fieldVal('website'),
       location: fieldVal('location'),
@@ -851,10 +914,9 @@
       title: fieldVal('title'),
       phone: fieldVal('phone'),
       email: fieldVal('email'),
-      city: '',
-      state: '',
       engagementLevel: eng ? eng.textContent.trim() : '',
-      joinedSignOn: joined ? 'Yes' : 'No',
+      signedAILetter: aiLetter ? 'Yes' : 'No',
+      signedCompetitionLetter: congressLetter ? 'Yes' : 'No',
       otherIssues: fieldVal('otherIssues'),
       logoUrl: logoUrl
     };
@@ -889,6 +951,7 @@
     cards.forEach(function (c, idx) { c.classList.toggle('shown', idx === i); });
     current = i;
     renderRail();
+    if (typeof updateMicrocopy === 'function') updateMicrocopy();
     // scroll the slide area into comfortable view
     var content = document.querySelector('.steps-content');
     if (content && content.scrollIntoView) content.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -944,11 +1007,39 @@
     });
   });
 
-  // ---- sign-on checkbox ----
-  var signCheck = document.getElementById('signon-check');
-  signCheck.addEventListener('click', function () {
-    this.classList.toggle('checked');
+  // ---- launch-letter checkboxes ----
+  document.querySelectorAll('[data-letter]').forEach(function (box) {
+    box.addEventListener('click', function (e) {
+      var link = e.target.closest('a');
+      if (link) {                                  // clicking the "read the full letter" link
+        e.stopPropagation();                       // should not toggle the checkbox
+        if (link.getAttribute('href') === '#') e.preventDefault();  // placeholder link
+        return;
+      }
+      this.classList.toggle('checked');
+      updateMicrocopy();
+    });
   });
+
+  // ---- Next-button microcopy: reactive to the two letter checkboxes ----
+  function updateMicrocopy() {
+    var el = document.getElementById('next-microcopy');
+    if (!el) return;
+    var ai = document.getElementById('letter-ai').classList.contains('checked');
+    var congress = document.getElementById('letter-congress').classList.contains('checked');
+    var n = (ai ? 1 : 0) + (congress ? 1 : 0);
+    if (n === 2) {
+      el.style.display = '';
+      el.textContent = "By clicking Next, you're adding your company to both letters above.";
+    } else if (n === 1) {
+      el.style.display = '';
+      el.textContent = "By clicking Next, you're adding your company just to the letter you selected above.";
+    } else {
+      el.style.display = 'none';
+      el.textContent = '';
+    }
+  }
+  updateMicrocopy();
 
   // ---- logo upload (Section 3) ----
   var LOGO_FN_URL = 'https://lta-logo-upload-url-689342826099.us-east4.run.app';
